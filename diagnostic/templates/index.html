@@ -1,0 +1,18 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+  <h1>Online Doctor Home</h1>
+  <p>Welcome to Online Doctor!</p>
+  <h3>Statistics:</h2>
+  <p>The application has the following record counts:</p>
+  <ul>
+    <li>
+      Records:
+      <ul>
+        <li>Total: {{ num_records }}</li>
+        <li>Pending: {{ num_unresolver_records }}</li>
+      </ul>
+  </li>
+    <li>Diagnoses: {{ num_diagmoses }}</li>
+  </ul>
+{% endblock %}

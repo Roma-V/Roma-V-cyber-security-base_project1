@@ -1,0 +1,11 @@
+{
+  "python.formatting.provider": "black",
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ]
+}

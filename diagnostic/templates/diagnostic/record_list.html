@@ -1,0 +1,23 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+  <h1>Record List</h1>
+  <a href="{% url 'new-record' %}">Create new record</a>
+  {% if record_list %}
+    <ul>
+      {% for record in record_list %}
+      <li>
+        <strong>
+          <a href="{{ record.get_absolute_url }}">
+            {{ record.title }}
+          </a>
+          ({{ record.diagnose | default_if_none:"in process" }})<br>
+        </strong>
+        <pre>{{ record.symptoms }}</pre>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no records in the database.</p>
+  {% endif %}
+{% endblock %}

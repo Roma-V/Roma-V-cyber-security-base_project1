@@ -1,0 +1,17 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<h1>Diagnose List</h1>
+<a href="{% url 'new-diagnose' %}">Create new diagnose</a>
+{% if diagnose_list %}
+<ul>
+  {% for diagnose in diagnose_list %}
+  <li>
+    {{ diagnose.name }}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no diagnoses in the database.</p>
+{% endif %}
+{% endblock %}

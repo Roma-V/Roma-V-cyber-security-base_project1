@@ -1,0 +1,28 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+<h1>Record title: {{ record.title }}</h1>
+{% if perms.diagnostic.change_record %}
+<p>Patient: <em>{{ record.patient }}</em></p>
+{% endif %}
+
+<p style="margin-bottom: 0;">Symptoms:</p>
+{# Put "|safe" after the variable in order to suppress automatic escaping #}
+<pre>{{ record.symptoms|safe }}</pre>
+<p>
+  <strong>Diagnose:</strong>
+  {{ record.diagnose | default_if_none:"in process" }}
+</p>
+{% if not record.diagnose and perms.diagnostic.change_record %}
+<form
+  action="/diagnostic/records/{{ record.id }}/diagnose/"
+  method="post"
+  style="border: 1px solid gray; border-radius: 0.5em; padding: 0.5em"
+>
+  {% csrf_token %}
+  <p style="color: red;">Hey, doctor. That's your job.</p>
+  {{ form.as_p }}
+  <input type="submit" value="Submit">
+</form>
+{% endif %}
+{% endblock %}

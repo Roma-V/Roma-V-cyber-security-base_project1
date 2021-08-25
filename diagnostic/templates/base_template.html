@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block title %}<title>Online doctor</title>{% endblock %}
+  <style>
+    * {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    h1, h2, h3, h4 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    ul.nav {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul.nav>li {
+      display: inline-block;
+      margin-left: 1em;
+    }
+
+    pre {
+      display: inline-block;
+      margin-left: 1em;
+      border: 1px solid gray;
+      border-radius: 0.5em;
+      background-color: silver;
+      padding: 0.5em;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="nav">
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'records' %}">Records</a></li>
+    {% if perms.diagnostic.view_diagnose %}
+    <li><a href="{% url 'diagnoses' %}">Diagnoses</a></li>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <li>User: {{ user.get_username }}</li>
+    <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+    {% endif %}
+  </ul>
+  {% block content %}{% endblock %}
+</body>
+
+</html>
