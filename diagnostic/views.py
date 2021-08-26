@@ -59,6 +59,14 @@ class RecordDetailView(LoginRequiredMixin, PermissionRequiredMixin, generic.Deta
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = DiagnoseRecordForm()
+        
+        # An extension for restricted access to private data
+        """
+        if not self.request.user.groups.filter(name='Doctors').exists():
+            context['object_list'] = Record.objects.filter(patient=self.request.user)
+            context['record_list'] = Record.objects.filter(patient=self.request.user)
+        """
+        
         return context
 
 class RecordCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
