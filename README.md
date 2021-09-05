@@ -3,6 +3,15 @@ The application is a simple online clinic.
 
 The users are divided into two groups: doctors and patients. Patients can create records with description of their condition. Doctors can create records on behalf of patients as well as assigning diagnose to a record.
 
+# Test users
+Here are `username - password` pairs for users in the database.
+- Patients:
+  - michael.schumacher - racer.legend
+  - roald.amundsen - antarctic
+- Doctors:
+  - ian.fleming - bondfather
+  - semiramis - thequeen
+
 # Security pitfalls
 Django is inherently safe, therefore some efforts were required to create vulnerabilities. Below is a list of some built in insecure features and ways they can be addressed.
 
